@@ -20,6 +20,7 @@ import Dashboardpage from "./Components/DashBoard/Dashboardpage.jsx";
 import CreateProjects from "./Components/DashBoard/Routes/CreateProjects.jsx";
 import UpdateProjects from "./Components/DashBoard/Components/UpdateProjects.jsx";
 import Calender from "./Components/DashBoard/Components/Calender.jsx";
+import Graph from "./Components/DashBoard/Components/Graph.jsx";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +58,10 @@ const routes = createBrowserRouter([
             {
                 path: 'calender',
                 element: <Calender/>
+            },
+            {
+                path: 'graph',
+                element: <Graph/>,
             },
             {
                 path: 'allprojects/:id',

@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className="justify-center flex md:px-0 px-5">
             <div className="container">
-                <div className="justify-between flex py-5 items-center">
+                <motion.div className="justify-between flex py-5 items-center" initial={{y: -100 }} animate={{ opacity: 1, y: 0 }} transition={{type: "spring", damping: 7, stiffness: 400, duration: 0.5}}>
                     <div className="text-white gap-10 flex items-center">
                         <Link to={'/'}>
                             <div className="flex items-center text-4xl font-bold gap-3 font-Caveat">
@@ -77,7 +77,7 @@ const Navbar = () => {
                             </>
                         }
                     </div>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

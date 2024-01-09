@@ -1,25 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Tilt} from "react-tilt";
 import {CiPause1, CiPlay1, CiStop1} from "react-icons/ci";
 import {motion} from "framer-motion";
-import {LiaHourglassStartSolid} from "react-icons/lia";
-
 const CounterTimer = () => {
     const [seconds, setSeconds] = useState(0);
     const [timerInterval, setTimerInterval] = useState(null);
     const [paused, setPaused] = useState(false);
 
-    useEffect(() => {
-        updateTimer();
-    }, [seconds]);
-
-    const updateTimer = () => {
-        const hours = Math.floor(seconds / 3600);
-        const minutes = Math.floor((seconds % 3600) / 60);
-        const remainingSeconds = seconds % 60;
-
-        document.title = `${formatTime(hours)}:${formatTime(minutes)}:${formatTime(remainingSeconds)}`;
-    };
 
     const formatTime = (time) => {
         return time < 10 ? `0${time}` : time;
@@ -58,21 +45,21 @@ const CounterTimer = () => {
 
                     <div className="sm:flex grid gap-6 justify-center">
                         <div className="grid gap-2 justify-center">
-                            <motion.button type="submit" onClick={startTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
+                            <motion.button onClick={startTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
                                 <CiPlay1 size={24}/>
                             </motion.button>
                             <p className="text-center">Start</p>
                         </div>
 
                         <div className="grid gap-2 justify-center">
-                            <motion.button type="submit" onClick={pauseTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
+                            <motion.button onClick={pauseTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
                                 <CiPause1 size={24} />
                             </motion.button>
                             <p className="text-center">Pause</p>
                         </div>
 
                         <div className="grid gap-2 justify-center">
-                            <motion.button type="submit" onClick={stopTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
+                            <motion.button onClick={stopTimer} whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} transition={{type: "spring", damping: 7, stiffness: 400}} className="border p-2 rounded-full flex justify-center">
                                 <CiStop1 size={24} />
                             </motion.button>
                             <p className="text-center">Stop</p>

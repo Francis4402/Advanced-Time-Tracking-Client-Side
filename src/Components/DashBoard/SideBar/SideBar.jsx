@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import SidebarMenu from "./SidebarMenu";
 import './Sidebar.css'
 import {MdDashboard} from "react-icons/md";
+import {GoGraph} from "react-icons/go";
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
                 name: "Calender",
                 icon: <FaCalendar />,
             },
+            {
+                path: "graph",
+                name: "Graph",
+                icon: <GoGraph />
+            }
         ],
     },
     {
@@ -52,6 +58,11 @@ const routes2 = [
         path: "calender",
         name: "Calender",
         icon: <FaCalendar />,
+    },
+    {
+        path: "graph",
+        name: "Graph",
+        icon: <GoGraph />
     },
     {
         path: "/",
