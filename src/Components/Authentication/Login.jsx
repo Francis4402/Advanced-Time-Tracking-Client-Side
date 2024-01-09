@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import UseAuth from "../Hooks/useAuth.jsx";
 import useAxiosPublic from "../Axiosfiles/useAxiosPublic.jsx";
+import {motion} from "framer-motion";
 
 const Login = () => {
 
@@ -33,54 +34,28 @@ const Login = () => {
             })
     }
 
-    const handlegoogleLogin = () => {
-        googleSignIn()
-            .then(res => {
-                updateUserProfile(res.user?.displayName, res.user?.photoURL)
-                const userInfo = {
-                    name: res.user?.displayName,
-                    email: res.user?.email,
-                    password: "",
-                    image: res.user?.photoURL,
-                }
-                axiosPublic.post('/users', userInfo)
-                    .then(res => {
-                        if(res.data.insertedId){
-                            Swal.fire({
-                                position: 'top-end',
-                                icon: 'success',
-                                title: 'Profile Created',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            navigate(from, {replace: true});
-                        }
-                    })
-            })
-            .catch(error =>  console.log(error))
-    }
 
     return (
         <div>
-            <div className="h-[600px] hero">
+            <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.5 }} transition={{ duration: 0.8, delay: 0.5, ease: [0, 0.71, 0.2, 1.01]}} className="h-[600px] hero">
                 <div className="hero-content p-2 flex-col">
                     <div className="text-center lg:text-left">
                         <h1 className="text-5xl font-bold text-white">login-In</h1>
-
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-300">
-                        <div className="card-body">
+
+                    <div className="card flex-shrink-0 w-full max-w-sm green-pink-gradient bg-opacity-5 p-[1px] rounded-[20px] shadow-card">
+                        <div className="card-body bg-[#151030] rounded-[20px] bg-opacity-70 backdrop-blur">
 
                             <form onSubmit={handleloginwithpass}>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Email</span>
+                                        <span className="label-text text-white">Email</span>
                                     </label>
                                     <input name="email" type="email" placeholder="email" className="input input-bordered w-full" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
-                                        <span className="label-text">Password</span>
+                                        <span className="label-text text-white">Password</span>
                                     </label>
 
                                     <div className="flex gap-3">
@@ -88,33 +63,32 @@ const Login = () => {
 
 
                                         <span onClick={() => setShowPassword(!showPassword)} className='btn'>
-                                {
-                                    showPassword ? <FaEyeSlash /> : <FaEye />
-                                }
-                            </span>
+                            {
+                                showPassword ? <FaEyeSlash /> : <FaEye />
+                            }
+                        </span>
                                     </div>
-                                    <label className="label">
-                                        <button className="label-text-alt link link-hover">Forgot password?</button>
-                                    </label>
 
                                 </div>
                                 <div className="form-control mt-6">
-                                    <button type="submit" className="btn btn-outline">Login</button>
+                                    <button type="submit" className="btn btn-outline text-white">Login</button>
                                 </div>
                             </form>
 
                             <div>
                                 <div className="flex gap-2 items-center">
-                                    <p className="md:text-base text-sm">New To Website register now?</p>
-                                    <Link className="btn btn-link text-base-content" to='/register'><button>Register</button></Link>
+                                    <p className="md:text-base text-sm text-white">New To Website register now?</p>
+                                    <Link className="btn btn-link text-base-content text-white" to='/register'><button>Register</button></Link>
                                 </div>
-                                <button onClick={handlegoogleLogin} className="btn btn-outline mt-3">Google Login</button>
+
                             </div>
 
                         </div>
                     </div>
+
+
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 };

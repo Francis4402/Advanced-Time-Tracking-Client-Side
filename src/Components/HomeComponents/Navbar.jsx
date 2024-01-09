@@ -17,7 +17,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className="justify-center flex">
+        <div className="justify-center flex md:px-0 px-5">
             <div className="container">
                 <div className="justify-between flex py-5 items-center">
                     <div className="text-white gap-10 flex items-center">
@@ -28,7 +28,7 @@ const Navbar = () => {
                             </div>
                         </Link>
 
-                        <div className="flex">
+                        <div className="md:flex hidden font-semibold">
                             <Link to={'/'}>
                                 <h1>Home</h1>
                             </Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
                                     <button className="btn btn-ghost text-lg">Login</button>
                                 </Link>
                                 <Link to={'/register'}>
-                                    <button className="btn btn-ghost text-lg">Register</button>
+                                    <button className="btn btn-ghost text-lg md:flex hidden">Register</button>
                                 </Link>
                             </div> : <>
                                 <div className="dropdown dropdown-end text-black">
@@ -57,12 +57,18 @@ const Navbar = () => {
                                             }
                                         </div>
                                     </label>
-                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <ul tabIndex={0} className="menu md:menu-lg menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#00073D] bg-opacity-80 backdrop-blur rounded-box w-52">
                                         {
                                             users.map(u => <li key={u?.email}>
                                                 <p className="text-base">{u.name}</p>
                                             </li>)
                                         }
+
+
+                                        <Link to={'/'} className="flex md:hidden">
+                                            <li><p>Home</p></li>
+                                        </Link>
+
 
                                         <Link to='dashboard'><li><p>DashBoard</p></li></Link>
                                         <li><button onClick={handleLogOut}>Logout</button></li>

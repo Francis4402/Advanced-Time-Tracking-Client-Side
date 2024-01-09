@@ -1,0 +1,5 @@
+.spline {
+    transform: scale(25%);
+    position: absolute;
+    translate: -150px 140px;
+}

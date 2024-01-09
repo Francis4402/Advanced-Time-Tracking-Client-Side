@@ -14,6 +14,12 @@ import AuthProvider from "./Components/Provider/AuthProvider.jsx";
 import DashBoard from "./Components/DashBoard/DashBoard.jsx";
 import PrivateRoute2 from "./Components/PrivateRoutes/PrivateRoute2.jsx";
 import PrivateRoute from "./Components/PrivateRoutes/PrivateRoute.jsx";
+import Employee from "./Components/DashBoard/Routes/Employee.jsx";
+import Home from "./Components/HomeComponents/Home.jsx";
+import Dashboardpage from "./Components/DashBoard/Dashboardpage.jsx";
+import CreateProjects from "./Components/DashBoard/Routes/CreateProjects.jsx";
+import UpdateProjects from "./Components/DashBoard/Components/UpdateProjects.jsx";
+import Calender from "./Components/DashBoard/Components/Calender.jsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +28,10 @@ const routes = createBrowserRouter([
         path: '/',
         element: <App/>,
         children: [
+            {
+                path: '/',
+                element: <Home/>
+            },
             {
                 path: '/login',
                 element: <PrivateRoute2><Login/></PrivateRoute2>
@@ -34,7 +44,26 @@ const routes = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><DashBoard/></PrivateRoute>
+        element: <PrivateRoute><DashBoard/></PrivateRoute>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboardpage/>
+            },
+            {
+                path: 'addproject',
+                element: <CreateProjects/>
+            },
+            {
+                path: 'calender',
+                element: <Calender/>
+            },
+            {
+                path: 'allprojects/:id',
+                element: <UpdateProjects/>,
+                loader: ({params}) => fetch(`https://advancetimetracking.vercel.app/allprojects/${params.id}`)
+            }
+        ]
     }
 ])
 
